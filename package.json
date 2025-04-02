@@ -1,12 +1,16 @@
 {
   "name": "database-optimization-project",
   "version": "1.0.0",
-  "description": "## Project Description",
+  "description": "Optimizing database performance using PostgreSQL and Node.js.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
