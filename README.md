@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This project aims to optimize database performance for the **Bank Marketing** dataset using **PostgreSQL** and **Node.js**. 
+This project aims to optimize database performance for the **Bank Marketing** dataset using **MySQL** and **Node.js**. 
  - The focus is on improving the efficiency of database queries through **stored procedures**, **triggers**, and **indexes**. 
  - Additionally, a backend API is developed using **Node.js** and **Express.js** for interacting with the database. API documentation is provided using **Swagger**.
 
