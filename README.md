@@ -2,7 +2,9 @@
 
 ## Project Description
 
-This project aims to optimize database performance for the **Bank Marketing** dataset using **PostgreSQL** and **Node.js**. The focus is on improving the efficiency of database queries through **stored procedures**, **triggers**, and **indexes**. Additionally, a backend API is developed using **Node.js** and **Express.js** for interacting with the database. API documentation is provided using **Swagger**.
+This project aims to optimize database performance for the **Bank Marketing** dataset using **PostgreSQL** and **Node.js**. 
+ - The focus is on improving the efficiency of database queries through **stored procedures**, **triggers**, and **indexes**. 
+ - Additionally, a backend API is developed using **Node.js** and **Express.js** for interacting with the database. API documentation is provided using **Swagger**.
 
 ## Features
 
@@ -27,12 +29,10 @@ The solution includes:
 - PostgreSQL (version 13.x or higher)
 - Swagger UI for API documentation
 
-### Installation Steps
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/database-optimization-project.git
-   cd database-optimization-project
-   ```
+---
 
+### > **Solution Images screenshots**
 
+```markdown
+![Solution Screenshot](images/screenshot.png)
