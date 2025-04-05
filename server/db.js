@@ -1,5 +1,5 @@
 // db.js
-// Betty Style Comment: PostgreSQL database connection using pooling
+// PostgreSQL database connection using pooling
 
 const { Pool } = require('pg');
 require('dotenv').config();

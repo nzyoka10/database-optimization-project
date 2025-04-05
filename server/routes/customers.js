@@ -1,5 +1,5 @@
 // customers.js
-// Betty Style Comment: CRUD routes for customer table
+// CRUD routes for customer table
 
 // Import required modules
 const express = require('express');
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
     campaign, pdays, previous, poutcome, y
   ]);
 
-  res.status(201).send('Customer added'); // Respond with a success message
+  res.status(201).send('New customer added!'); // Respond with a success message
 });
 
 // Update customer
@@ -83,3 +83,180 @@ router.delete('/:id', async (req, res) => {
 
 // Export the router to be used in the main server file
 module.exports = router;
+
+
+/**
+ * @swagger
+ * /api/customers:
+ *   get:
+ *     summary: Get all customers
+ *     description: Retrieve a list of all customers in the database.
+ *     responses:
+ *       200:
+ *         description: A list of customers
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   phone:
+ *                     type: string
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/customers/{id}:
+ *   get:
+ *     summary: Get a customer by ID
+ *     description: Retrieve detailed information about a specific customer by their ID.
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID of the customer
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: A customer object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *       404:
+ *         description: Customer not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/customers:
+ *   post:
+ *     summary: Create a new customer
+ *     description: Adds a new customer to the database.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Customer created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/customers/{id}:
+ *   put:
+ *     summary: Update customer information
+ *     description: Updates details of a specific customer by their ID.
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID of the customer to update
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Customer updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: Customer not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/customers/{id}:
+ *   delete:
+ *     summary: Delete a customer
+ *     description: Removes a customer from the database using their ID.
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID of the customer to delete
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Customer deleted successfully
+ *       404:
+ *         description: Customer not found
+ *       500:
+ *         description: Internal server error
+ */

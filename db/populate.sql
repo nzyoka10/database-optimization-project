@@ -1,11 +1,12 @@
 // populate.js
+
 const fs = require('fs');
 const csv = require('csv-parser');
 const { Pool } = require('pg');
 
 // PostgreSQL connection settings
 const pool = new Pool({
-  user: 'postgres',
+  user: 'user',
   host: 'localhost',
   database: 'bank_db',
   password: 'root',

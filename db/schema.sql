@@ -1,5 +1,5 @@
 -- schema.sql
--- Betty Style Comment: Creating a table for bank marketing customers
+-- Creating a table for bank marketing customers
 
 CREATE TABLE customers (
     id SERIAL PRIMARY KEY,                 -- Unique ID for each customer (auto-incremented)
