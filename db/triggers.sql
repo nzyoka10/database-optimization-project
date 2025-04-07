@@ -1,13 +1,23 @@
--- Automatically lowercase job title on insert
-CREATE OR REPLACE FUNCTION lowercase_job()
+-- Track insertions into customers table
+CREATE TABLE log_customers (
+    id SERIAL PRIMARY KEY,
+    customer_id INT,
+    action VARCHAR(10),
+    action_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Trigger function
+CREATE OR REPLACE FUNCTION log_customer_insert()
 RETURNS TRIGGER AS $$
 BEGIN
-  NEW.job := LOWER(NEW.job);
-  RETURN NEW;
+    INSERT INTO log_customers (customer_id, action)
+    VALUES (NEW.id, 'INSERT');
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_lowercase_job
-BEFORE INSERT ON customers
+-- Trigger itself
+CREATE TRIGGER trg_log_customer_insert
+AFTER INSERT ON customers
 FOR EACH ROW
-EXECUTE FUNCTION lowercase_job();
+EXECUTE FUNCTION log_customer_insert();

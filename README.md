@@ -7,9 +7,10 @@
 - This project uses a dataset from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/).
 
 
+
 ## 🧠 Background
 
-We are a team of database developers tasked with optimizing the performance of a PostgreSQL database built around a real-world dataset. The backend API is developed using Node.js, Express.js, and documented with Swagger. The system implements:
+I am a database developer tasked with optimizing the performance of a PostgreSQL database built around a real-world dataset. The backend API is developed using Node.js, Express.js, and documented with Swagger. The system implements:
 
 - Efficient database schema design
 - CRUD APIs
@@ -17,11 +18,10 @@ We are a team of database developers tasked with optimizing the performance of a
 - Triggers for automation
 - Performance analysis and tuning
 
----
 
 ## 📊 Dataset
 
-We selected the **Bank Marketing** dataset from the UCI ML Repository, which contains information about marketing campaigns of a Portuguese banking institution.
+We selected the **Bank Marketing**  dataset from the [UCI ML Repository](https://archive.ics.uci.edu/dataset/222/bank+marketing), which contains information about marketing campaigns of a Portuguese banking institution.
 
 
 ## 🏗️ Project Structure
@@ -85,9 +85,6 @@ We selected the **Bank Marketing** dataset from the UCI ML Repository, which con
 - **Triggers**: Auto-update inventory on order, audit changes
 - **Performance Testing**: Used `EXPLAIN ANALYZE` to compare before/after optimization
 
-![Explain Analyze](images/performance-compare.png)
-
----
 
 ## 📦 Installation & Usage
 
@@ -135,7 +132,7 @@ psql -U postgres -d bank_db -f db/triggers.sql
 5. Run the server:
 
 ```bash
-npm start
+npm run start
 ```
 
 6. Access API Docs:
@@ -144,7 +141,6 @@ npm start
 http://localhost:8080/api-docs
 ```
 
----
 
 ## 📈 Performance Report
 
@@ -154,7 +150,6 @@ http://localhost:8080/api-docs
 | Update Inventory   | Manual              | Triggered Auto     |
 | Avg Response Time  | 800ms               | 300ms              |
 
----
 
 ## 🎯 Deliverables
 
@@ -165,7 +160,6 @@ http://localhost:8080/api-docs
 - ✅ Performance analysis report
 
 
-
 ## 📚 References
 
 - [UCI Bank Marketing Dataset](https://archive.ics.uci.edu/ml/datasets/bank+marketing)
@@ -174,28 +168,26 @@ http://localhost:8080/api-docs
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 
----
 
 ## ✍️ Authors
+- [Eric Nzyoka](https://your-profile-link.com)
 
-- Eric Nzyoka and Team  
-- Backend Development by: Eric  
-- Database & Optimization: Team effort  
+  - **Tasks**
+     - Backend Development by: Eric  
+     - Database & Optimization: Team effort   
 
----
 
 ## 📸 Screenshots
 
 ### 📊 ER Diagram
-![ER Diagram](images/erd.png)
+![ER Diagram](docs/images/erd.png)
 
 ### 📋 Swagger API Docs
-![Swagger UI](images/swagger-ui.png)
+![Swagger UI](docs/images/Swagger-UI.png)
 
 ### 🔍 Query Performance Before/After
-![Query Comparison](images/performance-compare.png)
+![Query Comparison](docs/images/performance-compare.png)
 
----
 
 ## 💡 Future Improvements
 

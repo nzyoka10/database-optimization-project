@@ -1,12 +1,21 @@
--- Calculate number of customers who subscribed during a month
-CREATE OR REPLACE FUNCTION count_subscribers(month_name VARCHAR)
+-- Procedure to get total customers with positive response
+CREATE OR REPLACE FUNCTION get_positive_response_count()
 RETURNS INT AS $$
-DECLARE count_result INT;
+DECLARE
+    total INT;
 BEGIN
-  SELECT COUNT(*) INTO count_result
-  FROM customers
-  WHERE month = month_name AND y = 'yes';
+    SELECT COUNT(*) INTO total FROM customers WHERE y = 'yes';
+    RETURN total;
+END;
+$$ LANGUAGE plpgsql;
 
-  RETURN count_result;
+-- Procedure to get average balance per job
+CREATE OR REPLACE FUNCTION get_avg_balance_by_job(job_title VARCHAR)
+RETURNS NUMERIC AS $$
+DECLARE
+    avg_balance NUMERIC;
+BEGIN
+    SELECT AVG(balance) INTO avg_balance FROM customers WHERE job = job_title;
+    RETURN avg_balance;
 END;
 $$ LANGUAGE plpgsql;
