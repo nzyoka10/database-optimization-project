@@ -9,7 +9,7 @@ const pool = require('../db'); // Database connection pool
 // Get all customers
 router.get('/', async (req, res) => {
   // Query to select all customers, limiting to 100 records for efficiency
-  const result = await pool.query('SELECT * FROM customers LIMIT 100');
+  const result = await pool.query('SELECT * FROM customers LIMIT 200');
   res.json(result.rows); // Respond with customer data in JSON format
 });
 
@@ -167,6 +167,41 @@ module.exports = router;
  *                 type: string
  *               phone:
  *                 type: string
+ *               age:
+ *                 type: integer
+ *               job:
+ *                 type: string
+ *               marital:
+ *                 type: string
+ *               education:
+ *                 type: string
+ *               default_status:
+ *                 type: string
+ *               balance:
+ *                 type: number
+ *                 format: float
+ *               housing:
+ *                 type: string
+ *               loan:
+ *                 type: string
+ *               contact:
+ *                 type: string
+ *               day:
+ *                 type: integer
+ *               month:
+ *                 type: string
+ *               duration:
+ *                 type: integer
+ *               campaign:
+ *                 type: string
+ *               pdays:
+ *                 type: integer
+ *               previous:
+ *                 type: integer
+ *               poutcome:
+ *                 type: string
+ *               y:
+ *                 type: string
  *     responses:
  *       201:
  *         description: Customer created successfully
@@ -175,19 +210,47 @@ module.exports = router;
  *             schema:
  *               type: object
  *               properties:
- *                 id:
+ *                 age:
  *                   type: integer
- *                 name:
+ *                 job:
  *                   type: string
- *                 email:
+ *                 marital:
  *                   type: string
- *                 phone:
+ *                 education:
+ *                   type: string
+ *                 default_status:
+ *                   type: string
+ *                 balance:
+ *                   type: number
+ *                   format: float
+ *                 housing:
+ *                   type: string
+ *                 loan:
+ *                   type: string
+ *                 contact:
+ *                   type: string
+ *                 day:
+ *                   type: integer
+ *                 month:
+ *                   type: string
+ *                 duration:
+ *                   type: integer
+ *                 campaign:
+ *                   type: string
+ *                 pdays:
+ *                   type: integer
+ *                 previous:
+ *                   type: integer
+ *                 poutcome:
+ *                   type: string
+ *                 y:
  *                   type: string
  *       400:
  *         description: Invalid input
  *       500:
  *         description: Internal server error
  */
+
 
 /**
  * @swagger
