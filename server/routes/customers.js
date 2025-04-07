@@ -8,7 +8,7 @@ const pool = require('../db'); // Database connection pool
 
 // Get all customers
 router.get('/', async (req, res) => {
-  // Query to select all customers, limiting to 100 records for efficiency
+  // Query to select all customers, limiting to 200 records for efficiency
   const result = await pool.query('SELECT * FROM customers LIMIT 200');
   res.json(result.rows); // Respond with customer data in JSON format
 });
@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // Query to fetch a customer by their ID, parameterized to prevent SQL injection
   const result = await pool.query('SELECT * FROM customers WHERE id = $1', [req.params.id]);
+  if (result.rows.length === 0) {
+    return res.status(404).send('Customer not found'); // Return 404 if customer is not found
+  }
   res.json(result.rows[0]); // Respond with the first (and only) customer in the result
 });
 
@@ -30,23 +33,26 @@ router.post('/', async (req, res) => {
   } = req.body;
 
   // Insert new customer into the database using parameterized query
-  await pool.query(`
-    INSERT INTO customers (
+  try {
+    await pool.query(`
+      INSERT INTO customers (
+        age, job, marital, education, default_status, balance,
+        housing, loan, contact, day, month, duration,
+        campaign, pdays, previous, poutcome, y
+      ) VALUES (
+        $1, $2, $3, $4, $5, $6,
+        $7, $8, $9, $10, $11, $12,
+        $13, $14, $15, $16, $17
+      )
+    `, [
       age, job, marital, education, default_status, balance,
       housing, loan, contact, day, month, duration,
       campaign, pdays, previous, poutcome, y
-    ) VALUES (
-      $1, $2, $3, $4, $5, $6,
-      $7, $8, $9, $10, $11, $12,
-      $13, $14, $15, $16, $17
-    )
-  `, [
-    age, job, marital, education, default_status, balance,
-    housing, loan, contact, day, month, duration,
-    campaign, pdays, previous, poutcome, y
-  ]);
-
-  res.status(201).send('New customer added!'); // Respond with a success message
+    ]);
+    res.status(201).send('New customer added!'); // Respond with a success message
+  } catch (error) {
+    res.status(500).send('Error adding customer');
+  }
 });
 
 // Update customer
@@ -59,31 +65,44 @@ router.put('/:id', async (req, res) => {
   } = req.body;
 
   // Update the existing customer using parameterized query
-  await pool.query(`
-    UPDATE customers SET
-      age=$1, job=$2, marital=$3, education=$4, default_status=$5, balance=$6,
-      housing=$7, loan=$8, contact=$9, day=$10, month=$11, duration=$12,
-      campaign=$13, pdays=$14, previous=$15, poutcome=$16, y=$17
-    WHERE id=$18
-  `, [
-    age, job, marital, education, default_status, balance,
-    housing, loan, contact, day, month, duration,
-    campaign, pdays, previous, poutcome, y, req.params.id
-  ]);
+  try {
+    const result = await pool.query(`
+      UPDATE customers SET
+        age=$1, job=$2, marital=$3, education=$4, default_status=$5, balance=$6,
+        housing=$7, loan=$8, contact=$9, day=$10, month=$11, duration=$12,
+        campaign=$13, pdays=$14, previous=$15, poutcome=$16, y=$17
+      WHERE id=$18
+    `, [
+      age, job, marital, education, default_status, balance,
+      housing, loan, contact, day, month, duration,
+      campaign, pdays, previous, poutcome, y, req.params.id
+    ]);
 
-  res.send('Customer updated'); // Respond with a success message
+    if (result.rowCount === 0) {
+      return res.status(404).send('Customer not found'); // Return 404 if no rows updated
+    }
+    res.send('Customer updated'); // Respond with a success message
+  } catch (error) {
+    res.status(500).send('Error updating customer');
+  }
 });
 
 // Delete customer
 router.delete('/:id', async (req, res) => {
   // Delete a customer by their ID using parameterized query
-  await pool.query('DELETE FROM customers WHERE id=$1', [req.params.id]);
-  res.send('Customer deleted'); // Respond with a success message
+  try {
+    const result = await pool.query('DELETE FROM customers WHERE id=$1', [req.params.id]);
+    if (result.rowCount === 0) {
+      return res.status(404).send('Customer not found'); // Return 404 if customer not found
+    }
+    res.send('Customer deleted'); // Respond with a success message
+  } catch (error) {
+    res.status(500).send('Error deleting customer');
+  }
 });
 
 // Export the router to be used in the main server file
 module.exports = router;
-
 
 /**
  * @swagger
@@ -205,52 +224,11 @@ module.exports = router;
  *     responses:
  *       201:
  *         description: Customer created successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 age:
- *                   type: integer
- *                 job:
- *                   type: string
- *                 marital:
- *                   type: string
- *                 education:
- *                   type: string
- *                 default_status:
- *                   type: string
- *                 balance:
- *                   type: number
- *                   format: float
- *                 housing:
- *                   type: string
- *                 loan:
- *                   type: string
- *                 contact:
- *                   type: string
- *                 day:
- *                   type: integer
- *                 month:
- *                   type: string
- *                 duration:
- *                   type: integer
- *                 campaign:
- *                   type: string
- *                 pdays:
- *                   type: integer
- *                 previous:
- *                   type: integer
- *                 poutcome:
- *                   type: string
- *                 y:
- *                   type: string
  *       400:
  *         description: Invalid input
  *       500:
  *         description: Internal server error
  */
-
 
 /**
  * @swagger
@@ -281,19 +259,6 @@ module.exports = router;
  *     responses:
  *       200:
  *         description: Customer updated successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: integer
- *                 name:
- *                   type: string
- *                 email:
- *                   type: string
- *                 phone:
- *                   type: string
  *       400:
  *         description: Invalid input
  *       404:
