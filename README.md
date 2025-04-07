@@ -29,22 +29,26 @@ We selected the **Bank Marketing** dataset from the UCI ML Repository, which con
 ```
 .
 ├── db/
-│   ├── schema.sql
-│   |-- procedures.sql
-│   |── triggers.sql
-│   └── seed_data.sql
+│   ├── schema.sql         # Defines tables and relations in PostgreSQL
+│   ├── procedures.sql     # Contains stored procedures for optimized queries
+│   ├── triggers.sql       # Contains triggers for automatic actions (e.g., update inventory)
+│   └── seed_data.sql      # Script to insert sample data (10,000+ records)
+│
 ├── docs/
-│   |── swagger.js
-│   └── images/
+│   ├── swagger.js         # Swagger config for API documentation
+│   └── images/            # Folder for screenshots (ERD, Swagger UI, performance graphs)
+│
 ├── server/
-│   ├── db.js
-│   ├── server.js
+│   ├── db.js              # PostgreSQL connection setup using `pg` module
+│   ├── server.js          # Main server entry point using Express.js
 │   └── routes/
-│       ├── customers.js
-│       ├── campaigns.js
-├── package.json
-|── .env
-└── README.md
+│       ├── customers.js   # API endpoints for customer data
+│       └── campaigns.js   # API endpoints for marketing campaign data
+│
+├── package.json           # Project metadata and dependencies
+├── .env                   # Environment variables (DB credentials, port, etc.)
+└── README.md              # Project overview and documentation
+
 ```
 
 ---
@@ -122,7 +126,7 @@ PG_DATABASE=bank_db
 4. Initialize and seed database:
 
 ```bash
-psql -U postgres -d bank_db -f db/init.sql
+psql -U postgres -d bank_db -f db/schema.sql
 psql -U postgres -d bank_db -f db/seed_data.sql
 psql -U postgres -d bank_db -f db/procedures.sql
 psql -U postgres -d bank_db -f db/triggers.sql
@@ -198,5 +202,3 @@ http://localhost:8080/api-docs
 - Add authentication with JWT
 - Use Docker for deployment
 - GraphQL integration for flexible querying
-
-
