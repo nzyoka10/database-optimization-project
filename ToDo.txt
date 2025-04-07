@@ -1,0 +1,4 @@
+---------------------------------------
+ToDo: 
+ - Update project name to 'Bank Marketing'
+ - Re-design the database 

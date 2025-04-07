@@ -1,4 +1,4 @@
-# 🚀 Database Optimization Project with PostgreSQL & Node.js
+# 🚀 Database Optimization with PostgreSQL & Node.js
 
 ## 📘 Project Overview
 
@@ -113,11 +113,11 @@ npm install
 3. Create and configure `.env` file:
 
 ```env
-PORT=5000
+PORT=yourport:number
 PG_HOST=localhost
-PG_USER=postgres
+PG_USER=yourUsername
 PG_PASSWORD=yourpassword
-PG_DATABASE=bank_db
+PG_DATABASE=yourdatabse:name
 ```
 
 4. Initialize and seed database:
@@ -170,11 +170,9 @@ http://localhost:8080/api-docs
 
 
 ## ✍️ Authors
-- [Eric Nzyoka](https://your-profile-link.com)
-
-  - **Tasks**
-     - Backend Development by: Eric  
-     - Database & Optimization: Team effort   
+- [Eric Nzyoka]
+    - Backend Development by  
+    - Database & Optimization
 
 
 ## 📸 Screenshots
