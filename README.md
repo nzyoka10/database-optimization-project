@@ -1,5 +1,7 @@
 # 🚀 Database Optimization with PostgreSQL & Node.js
 
+![Swagger UI](docs/images/UI.png)
+
 ## 📘 Project Overview
 
 **Title**: Optimizing Database Performance with PostgreSQL and Node.js  
@@ -93,7 +95,7 @@ We selected the **Bank Marketing**  dataset from the [UCI ML Repository](https:/
 - Node.js
 - PostgreSQL
 - npm
-- OCI Account (for deployment)
+<!-- - OCI Account (for deployment) -->
 
 ### Setup
 
@@ -169,26 +171,6 @@ http://localhost:8080/api-docs
 - [Express.js](https://expressjs.com/)
 
 
-## ✍️ Authors
-- [Eric Nzyoka]
-    - Backend Development by  
-    - Database & Optimization
 
 
-## 📸 Screenshots
 
-### 📊 ER Diagram
-![ER Diagram](docs/images/erd.png)
-
-### 📋 Swagger API Docs
-![Swagger UI](docs/images/Swagger-UI.png)
-
-### 🔍 Query Performance Before/After
-![Query Comparison](docs/images/performance-compare.png)
-
-
-## 💡 Future Improvements
-
-- Add authentication with JWT
-- Use Docker for deployment
-- GraphQL integration for flexible querying
