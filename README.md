@@ -12,7 +12,7 @@
 
 ## 🧠 Background
 
-I am a database developer tasked with optimizing the performance of a PostgreSQL database built around a real-world dataset. The backend API is developed using Node.js, Express.js, and documented with Swagger. The system implements:
+Database developer tasked with optimizing the performance of a PostgreSQL database built around a real-world dataset. The backend API is developed using Node.js, Express.js, and documented with Swagger. The system implements:
 
 - Efficient database schema design
 - CRUD APIs
@@ -23,7 +23,7 @@ I am a database developer tasked with optimizing the performance of a PostgreSQL
 
 ## 📊 Dataset
 
-We selected the **Bank Marketing**  dataset from the [UCI ML Repository](https://archive.ics.uci.edu/dataset/222/bank+marketing), which contains information about marketing campaigns of a Portuguese banking institution.
+Selected the **Bank Marketing**  dataset from the [UCI ML Repository](https://archive.ics.uci.edu/dataset/222/bank+marketing), which contains information about marketing campaigns of a Portuguese banking institution.
 
 
 ## 🏗️ Project Structure
